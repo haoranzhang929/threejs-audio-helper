@@ -1,13 +1,288 @@
 body {
+  font-family: "Roboto Mono", monospace;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+[type="file"] {
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
+
+.configs {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px;
+  height: auto;
+}
+
+.instruction {
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 600px;
+  height: 300px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -150px 0 0 -300px;
+  background: #001a3f;
+  justify-content: space-around;
+  padding: 20px;
+  color: #fff;
+}
+
+.instruction small {
+  text-align: center;
+  padding: 2px 0;
+}
+
+.music-credit a:active,
+.music-credit a:visited,
+.music-credit a:link {
+  color: #fff;
+}
+
+.control {
+  display: flex;
+  padding: 20px 15px 5px 15px;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+}
+
+.start {
+  padding-right: 20vw;
+}
+
+.load-file {
+  padding-left: 20vw;
+}
+
+.chart {
+  height: 80%;
+}
+
+.control label {
+  padding-top: 5px;
+  font-family: "Roboto Mono", monospace;
+  text-align: center;
+}
+
+.load-file {
+  width: auto;
+}
+
+.load-file small {
+  padding-left: 10px;
+}
+
+.start-btn,
+.stop-btn,
+.load-file label {
+  background: #0f4c81;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Roboto Mono", monospace;
+  outline: none;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+}
+
+.stop-btn {
+  background: #bb0000;
+  margin-left: 10px;
+}
+
+.start-btn:hover,
+.load-file label:hover {
+  background-color: #0c3a63;
+}
+
+.stop-btn:hover {
+  background-color: #8b0000;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  padding-bottom: 5px;
+}
+
+footer a:active,
+footer a:visited,
+footer a:link {
+  color: #000;
+}
+
+/* range slider CSS */
+
+input[type="range"] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+  margin: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type="range"]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type="range"]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+/* Special styling for WebKit/Blink */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 18px;
+  width: 10px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -7px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+}
+
+/* All the same stuff for Firefox */
+input[type="range"]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 18px;
+  width: 10px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+input[type="range"]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 18px;
+  width: 10px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4.2px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #0f4c81;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: #0c3a63;
+}
+
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 4.2px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #0f4c81;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+input[type="range"]::-ms-track {
+  width: 100%;
+  height: 4.2px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+
+input[type="range"]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+input[type="range"]:focus::-ms-fill-lower {
+  background: #0f4c81;
+}
+
+input[type="range"]::-ms-fill-upper {
+  background: #0f4c81;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+input[type="range"]:focus::-ms-fill-upper {
+  background: #0c3a63;
+}
+
+@media (max-width: 812px) and (orientation: portrait) {
+  .configs {
+    flex-direction: column;
+  }
+
+  .start,
+  .load-file {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .load-file {
+    flex-direction: column;
+  }
+
+  .load-file label {
+    width: 140px;
+    align-self: center;
+    text-align: center;
+  }
+
+  .load-file small {
+    text-align: center;
+    padding-top: 5px;
+  }
+
+  .instruction {
+    width: 350px;
+    height: 400px;
+    margin: -200px 0 0 -175px;
+    padding: 10px 0;
+  }
+
+  .instruction small {
+    padding: 0 10px;
+  }
 }

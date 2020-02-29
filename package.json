@@ -1,18 +1,26 @@
 {
-  "name": "react-typescript",
+  "name": "threejs-audio-helper",
   "version": "0.1.0",
   "private": true,
+  "author": "Haoran Zhang",
+  "homepage": "https://haoranzhang929.github.io/threejs-audio-helper/",
   "dependencies": {
+    "@nivo/line": "^0.61.1",
+    "lodash.debounce": "^4.0.8",
+    "rc-slider": "^9.2.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "three": "^0.113.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^10.0.0",
     "@types/jest": "^25.1.3",
+    "@types/lodash.debounce": "^4.0.6",
     "@types/node": "^13.7.4",
+    "@types/rc-slider": "^8.6.5",
     "@types/react": "^16.9.22",
     "@types/react-dom": "^16.9.5",
     "@typescript-eslint/eslint-plugin": "^2.21.0",
@@ -26,12 +34,13 @@
   },
   "scripts": {
     "start": "npm run lint && npm run typecheck && react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp build/index.html build/404.html",
     "test": "react-scripts test",
     "typecheck": "echo 'Type Checking...' && tsc --noEmit && echo 'Type Checking Completed'",
     "eject": "react-scripts eject",
     "lint": "echo 'Lint Checking...' && eslint --ext .js,.jsx,.ts,.tsx src && echo 'Lint Checking Completed'",
-    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src --fix"
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src --fix",
+    "deploy:gh-pages": "npm run build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
