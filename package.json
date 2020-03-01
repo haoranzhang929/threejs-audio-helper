@@ -6,6 +6,7 @@
   "homepage": "https://haoranzhang929.github.io/threejs-audio-helper/",
   "dependencies": {
     "@nivo/line": "^0.61.1",
+    "gh-pages": "^2.2.0",
     "lodash.debounce": "^4.0.8",
     "rc-slider": "^9.2.2",
     "react": "^16.12.0",

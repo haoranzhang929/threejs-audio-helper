@@ -35,6 +35,7 @@ const App = () => {
   const [selectedDataIndex, setDataIndex] = useState<number>();
   const [userAudioPath, setUserAudioPath] = useState<string>();
   const [userAudioName, setUserAudioName] = useState<string>("Blue Boi.mp3");
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (selectedDataIndex) {
@@ -86,6 +87,7 @@ const App = () => {
       });
 
     if (sound.buffer && !sound.isPlaying && !audioEndedRef.current) {
+      console.log("Ended");
       audioEndedRef.current = true;
       audioStartRef.current = false;
       const fullData = Array.from(audioMap).map(([key, value]) =>
@@ -95,6 +97,7 @@ const App = () => {
       setData(fullData[0]);
       setDataIndex(0);
       sliderRef.current && sliderRef.current.focus();
+      setLoading(false);
 
       frameId && cancelAnimationFrame(frameId);
       frameId = null;
@@ -109,10 +112,14 @@ const App = () => {
     }
   };
 
-  const onStartClicked = () => !audioStartRef.current && start();
+  const onStartClicked = () => {
+    !audioStartRef.current && start();
+    setLoading(true);
+  };
 
   const onEndClicked = () => {
     audioStartRef.current && sound.stop();
+    setLoading(false);
   };
 
   const onChangeSetIndex = useCallback(
@@ -157,37 +164,48 @@ const App = () => {
             This is a helper site for visualizing ByteFrequencyData from
             <strong> THREE.AudioAnalyser.getFrequencyData()</strong>
           </small>
-          <br />
-          <small>
-            1. <strong>Load</strong> audio file to visualize (sample music provided if you just want
-            to try it out)
-          </small>
-          <small>
-            2. Once selected, Click <strong>Start</strong> to play & analyse audio
-          </small>
-          <small>
-            3. Wait for audio to finish or click <strong>Stop</strong> to display line chart and
-            frequency data slider
-          </small>
-          <small>
-            4. Use <strong>Slider</strong> to select No. of frequency data you want (Default is 0)
-          </small>
-          <br />
-          <small>
-            Note: <strong>Pause</strong> or <strong>Duration control</strong> functionalities are
-            not implemented
-          </small>
+          {loading ? (
+            <div className="lds-facebook">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          ) : (
+            <>
+              <br />
+              <small>
+                1. <strong>Load</strong> audio file to visualize (sample music provided if you just
+                want to try it out)
+              </small>
+              <small>
+                2. Once selected, Click <strong>Start</strong> to play & analyse audio
+              </small>
+              <small>
+                3. Wait for audio to finish or click <strong>Stop</strong> to display line chart and
+                frequency data slider
+              </small>
+              <small>
+                4. Use <strong>Slider</strong> to select No. of frequency data you want (Default is
+                0)
+              </small>
+              <br />
+              <small>
+                Note: <strong>Pause</strong> or <strong>Duration control</strong> functionalities
+                are not implemented
+              </small>
 
-          <small className="music-credit">
-            Sample Music by LAKEY INSPIRED -{" "}
-            <a
-              href="https://soundcloud.com/lakeyinspired/blue-boi"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Blue Boi
-            </a>
-          </small>
+              <small className="music-credit">
+                Sample Music by LAKEY INSPIRED -{" "}
+                <a
+                  href="https://soundcloud.com/lakeyinspired/blue-boi"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Blue Boi
+                </a>
+              </small>
+            </>
+          )}
         </div>
       )}
 
