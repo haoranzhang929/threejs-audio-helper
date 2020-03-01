@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/threejs-audio-helper/precache-manifest.188a273501323ecfbfb30d1eb66b11e5.js"
+  "/threejs-audio-helper/precache-manifest.79e4eadf972d62e10e09553ad7637392.js"
 );
 
 self.addEventListener('message', (event) => {
