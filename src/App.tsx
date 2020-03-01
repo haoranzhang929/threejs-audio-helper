@@ -38,7 +38,7 @@ const App = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (selectedDataIndex) {
+    if (typeof selectedDataIndex === "number") {
       selectedFullData && setData(selectedFullData[selectedDataIndex]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,6 +56,7 @@ const App = () => {
         if (sound) {
           sound.setBuffer(buffer);
           sound.play();
+          sound.setVolume(1);
           audioStartRef.current = true;
           audioEndedRef.current = false;
         }
